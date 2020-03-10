@@ -1,0 +1,12 @@
+.navBar {
+  margin-top: -45px;
+  background-color: #f6f5f6;
+
+  // 全局样式，告知cssModules不要处理全局样式
+  :global {
+    .am-navbar-title,
+    .icon-back {
+      color: #333;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+html,
+body {
+  color: #333;
+  background-color: #fff;
+  font-family: "Microsoft YaHei";
+  height: 100%;
+}
+
+a {
+  color: #333;
+}
+
+#root,
+#app {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  touch-action: pan-y;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+dd {
+  margin: 0;
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+.loading {
+  padding-top: 50px;
+  text-align: center;
+}

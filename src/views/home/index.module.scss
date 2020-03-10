@@ -1,0 +1,147 @@
+.root {
+  padding-bottom: 50px;
+}
+
+.swiper {
+  height: 212px;
+}
+
+// 导航
+.nav {
+  padding: 10px 0 0 0;
+  background-color: #fff;
+  :global {
+    .am-flexbox-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 48px;
+        height: 48px;
+      }
+      p {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #333;
+      }
+    }
+  }
+}
+
+// 租房小组
+.groups {
+  background-color: #f5f5f5;
+  padding-bottom: 20px;
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  // 第三方或是全局的，不需要css-modules重命名，所以要放在 :global 中
+  :global {
+    .am-flexbox {
+      height: 50px;
+      padding: 10px 15px 10px 20px;
+    }
+    .am-grid {
+      .am-flexbox {
+        height: 80px;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
+      .am-flexbox-item {
+        padding: 5px 10px;
+        height: 80px;
+        .am-grid-item-content {
+          background-color: #fff;
+          padding: 0;
+        }
+      }
+
+      .am-flexbox-item:last-child {
+        padding-left: 0px;
+      }
+    }
+  }
+
+  //   .nav-item {
+  // 如果使用了css-modules，那么我们之前的样式名称，就必须命令成驼峰命名法则的样式名称
+  .navItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .left {
+      flex: 1;
+      color: #333;
+      p:first-child {
+        margin-bottom: 7px;
+      }
+      p:last-child {
+        color: gray;
+        font-size: 12px;
+        margin-top: 0px;
+      }
+    }
+    .right {
+      width: 48px;
+      height: 48px;
+      margin-right: 10px;
+      img {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  }
+}
+
+// 最新资讯：
+.news {
+  padding: 10px;
+  background-color: #fff;
+  overflow: hidden;
+
+  .groupTitle {
+    margin: 10px 0 5px 10px;
+    font-size: 15px;
+  }
+
+  .newsItem {
+    height: 120px;
+    padding: 15px 10px 15px 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .newsItem:last-child {
+    border: 0;
+  }
+
+  .imgWrap {
+    float: left;
+    height: 90px;
+    width: 120px;
+
+    img {
+      height: 90px;
+      width: 120px;
+    }
+  }
+
+  .content {
+    overflow: hidden;
+    height: 100%;
+    padding-left: 12px;
+  }
+
+  .title {
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .info {
+    width: 100%;
+    color: #9c9fa1;
+    font-size: 12px;
+  }
+}
