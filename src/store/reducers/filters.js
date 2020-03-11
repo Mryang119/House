@@ -17,6 +17,7 @@ export default (state = initeState, action) => {
     case SET_FILTER_DATA:
       // 深拷贝一份state数据
       const newState1 = JSON.parse(JSON.stringify(state))
+      newState1.filterData = action.payload
       return newState1
 
     case SET_OPEN_TYPE:
@@ -29,6 +30,11 @@ export default (state = initeState, action) => {
       const newState3 = JSON.parse(JSON.stringify(state))
       newState3.selectTitleValue = {...newState3.selectTitleValue,...action.payload}
       return newState3
+    case SET_FILTER_DATA:
+      // 深拷贝一份state数据
+      const newState4 = JSON.parse(JSON.stringify(state))
+      newState4.filterData = {...newState4.action.payload}
+      return newState4
 
     default:
       return state

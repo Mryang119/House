@@ -30,7 +30,7 @@ class FilterTitle extends Component {
                   this.props.setOpenType(item.type)
                   this.props.setSelectTitleValue({ [item.type]: true })
                 }}
-                className={Classnames({[styles.selected] : isSelect})}
+                className={Classnames({ [styles.selected]: isSelect })}
               >
                 {item.name}
                 <i className='iconfont icon-arrow'></i>
@@ -44,8 +44,6 @@ class FilterTitle extends Component {
 }
 // 用于接收仓库
 const mapStateToProps = ({ filters: { selectTitleValue } }) => {
-  console.log(selectTitleValue)
-
   return { selectTitleValue }
 }
 

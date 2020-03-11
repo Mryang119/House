@@ -1,18 +1,52 @@
+import {
+  SET_OPEN_TYPE,
+  SET_SELECT_TITLE_VALUE,
+  SET_FILTER_DATA
+} from '../actionTypes/filterActionType'
+import { axios } from '../../utils/axios'
+import { getCurrencity } from '../../utils/city'
 /**
  * 同步的action
  * @param {*} data  'area'、'mode'、'price'、'more'
  * 直接返回对象，是同步的
  */
-import {SET_OPEN_TYPE,SET_SELECT_TITLE_VALUE} from '../actionTypes/filterActionType'
 export const setOpenType = data => {
   return {
-      type: SET_OPEN_TYPE,
-      payload: data
+    type: SET_OPEN_TYPE,
+    payload: data
   }
 }
 export const setSelectTitleValue = data => {
   return {
-      type: SET_SELECT_TITLE_VALUE,
-      payload: data
+    type: SET_SELECT_TITLE_VALUE,
+    payload: data
+  }
+}
+
+export const setFilterData = data => {
+  return {
+    type: SET_FILTER_DATA,
+    payload: data
+  }
+}
+
+/**
+ * 异步的action
+ * 异步的action返回箭头函数
+ * 发请求请求Filter需要的数据，然后保存到仓库中(触发同步action)
+ */
+export const asyncSetFilterData = () => {
+  return async diaptch => {
+    // 拿到定位城市的id
+    const { value } = await getCurrencity()
+
+    const result = await axios.get('/houses/condition', {
+      params: {
+        id: value
+      }
+    })
+
+    // 异步action一定要触发同步的action才能把数据保存到仓库中
+    diaptch(setFilterData(result.data.body))
   }
 }
