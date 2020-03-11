@@ -3,6 +3,7 @@ import styles from './index.module.scss'
 import MynavBar from '../../components/navBar'
 import { getCurrencity } from '../../utils/city'
 import { Toast } from 'antd-mobile'
+import HouseItem from '../../components/houseLitst'
 const BMap = window.BMap
 // 圆形覆盖物的样式：
 const labelStyle = {
@@ -19,13 +20,33 @@ class Map extends Component {
     super()
     this.state = {
       houseList: [],
-      isShow: false
+      isShow: false //是否展示房源信息
     }
   }
   componentDidMount () {
     this.map = new BMap.Map('container') // 创建地图实例
     this.renderMap()
+    this.map.addEventListener('click',()=>{
+      console.log('111');
+      this.setState({
+        isShow:false
+      })
+    })
     this.id = JSON.parse(window.localStorage.getItem('city')).value
+  }
+  // 渲染房屋列表
+  renderHouseList = () => {
+    return <div className={[styles.houseList,this.state.isShow ? styles.show : ''].join(' ')}>
+      <div className={styles.titleWrap}>
+        <h1 className={styles.listTitle}>房屋列表</h1>
+        <a className={styles.titleMore} href="/layout/houselist">更多房源</a>
+      </div>
+      <div className={styles.houseItems}>
+        {this.state.houseList.map(item => {
+          return <HouseItem key={item.houseCode} {...item}/>
+        })}
+      </div>
+    </div>
   }
   // 获取当前地图缩放级别
   getTypeAndNextZoom = () => {
@@ -163,6 +184,7 @@ class Map extends Component {
       isShow: true
     })
   }
+  
   // 获取屏幕最高高度
   calcHeight = () => {
     return window.screen.height
@@ -173,6 +195,7 @@ class Map extends Component {
         <div style={{ height: 45 }}></div>
         <MynavBar title='地图找房' />
         <div id='container' style={{ height: this.calcHeight() - 45 }}></div>
+        {this.renderHouseList()}
       </div>
     )
   }
