@@ -34,7 +34,7 @@ class Filter extends Component {
           (openType)=='more' && <FiterMore />
         }
         </div>
-        {this.renderMask()}
+        {this.props.filters.openType!='more' && this.renderMask()}
       </div>
     );
   }

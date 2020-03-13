@@ -1,7 +1,8 @@
 import {
   SET_OPEN_TYPE,
   SET_SELECT_TITLE_VALUE,
-  SET_FILTER_DATA
+  SET_FILTER_DATA,
+  SET_VALUE,
 } from '../actionTypes/filterActionType'
 import { axios } from '../../utils/axios'
 import { getCurrencity } from '../../utils/city'
@@ -16,6 +17,12 @@ export const setOpenType = data => {
     payload: data
   }
 }
+export const setValue = data => {
+  return {
+    type: SET_VALUE,
+    payload: data
+  }
+}
 export const setSelectTitleValue = data => {
   return {
     type: SET_SELECT_TITLE_VALUE,
@@ -24,6 +31,12 @@ export const setSelectTitleValue = data => {
 }
 
 export const setFilterData = data => {
+  return {
+    type: SET_FILTER_DATA,
+    payload: data
+  }
+}
+export const toggleSelect = data => {
   return {
     type: SET_FILTER_DATA,
     payload: data
