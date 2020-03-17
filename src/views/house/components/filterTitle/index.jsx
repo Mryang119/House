@@ -15,7 +15,6 @@ const types = [
 ]
 class FilterTitle extends Component {
   componentDidMount () {
-    console.log(this.props)
   }
   render () {
     return (

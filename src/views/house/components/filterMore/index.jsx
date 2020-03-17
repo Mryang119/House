@@ -65,11 +65,14 @@ class FilterMore extends Component {
           cancelText="清除"
           okText='确定'
           cancelClick={()=>{
+            this.props.setOpenType('')
             this.setState({selectedValues:[]})
+            this.props.setValue([],this.props.openType)
           }}
+          
           okClick={()=>{
-          this.props.setValue(this.state.selectedValues)
           this.props.setOpenType('')
+          this.props.setValue(this.state.selectedValues,this.props.openType)
         }}/>
         </div>
       </div>
@@ -79,7 +82,8 @@ class FilterMore extends Component {
 const mapStateToprops = ({
   filters: {
     filterData: { roomType, oriented, floor, characteristic },
-    selectValue: { more }
+    selectValue: { more },
+    openType
   }
 }) => {
   return {
@@ -87,7 +91,8 @@ const mapStateToprops = ({
     oriented,
     floor,
     characteristic,
-    more
+    more,
+    openType
   }
 }
 const mapDispathToprops = dispath => {

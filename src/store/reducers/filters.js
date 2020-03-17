@@ -15,7 +15,9 @@ const initeState = {
     mode:['null'],
     price:['null'],
     more:[] //筛选
-  }
+  },
+  isSearch:false
+  // houseList:null
 }
 
 export default (state = initeState, action) => {
@@ -24,11 +26,21 @@ export default (state = initeState, action) => {
       // 深拷贝一份state数据
       const newState1 = JSON.parse(JSON.stringify(state))
       newState1.filterData = action.payload
+      newState1.isSearch = false
       return newState1
     case SET_VALUE:
       // 深拷贝一份state数据
       const newState5 = JSON.parse(JSON.stringify(state))
-      newState5.selectValue[newState5.openType] = action.payload
+      newState5.selectValue[action.open] = action.payload
+      newState5.isSearch = true
+      let type = action.open
+      if (type === 'area') {
+        newState5.selectTitleValue['area'] = newState5.selectValue['area'].length > 2
+      } else if (type === 'mode' || type === 'price') {
+        newState5.selectTitleValue[type] = newState5.selectValue[type][0] !== 'null'
+      } else if (type === 'more') {
+        newState5.selectTitleValue['more'] = newState5.selectValue['more'].length > 0
+      }
       
       return newState5
 
@@ -36,13 +48,15 @@ export default (state = initeState, action) => {
       // 深拷贝一份state数据
       const newState2 = JSON.parse(JSON.stringify(state))
       newState2.openType = action.payload
+      newState2.isSearch = false
+      // 处理高亮状态
       Object.keys(newState2.selectTitleValue).forEach(type => {
         if (type === 'area') {
-            newState2.selectTitleValue['area'] = newState2.selectValue['area'].length > 2
+          newState2.selectTitleValue['area'] = newState2.selectValue['area'].length > 2
         } else if (type === 'mode' || type === 'price') {
-            newState2.selectTitleValue[type] = newState2.selectValue[type][0] !== 'null'
+          newState2.selectTitleValue[type] = newState2.selectValue[type][0] !== 'null'
         } else if (type === 'more') {
-            newState2.selectTitleValue['more'] = newState2.selectValue['more'].length > 0
+          newState2.selectTitleValue['more'] = newState2.selectValue['more'].length > 0
         }
     })
       return newState2
@@ -50,12 +64,15 @@ export default (state = initeState, action) => {
       // 深拷贝一份state数据
       const newState3 = JSON.parse(JSON.stringify(state))
       newState3.selectTitleValue = {...newState3.selectTitleValue,...action.payload}
+      newState3.isSearch = false
       return newState3
-    case SET_FILTER_DATA:
-      // 深拷贝一份state数据
-      const newState4 = JSON.parse(JSON.stringify(state))
-      newState4.filterData = {...newState4.action.payload}
-      return newState4
+  
+    //   // 处理房屋
+    // case SET_HOUSE_LIST:
+    //   // 深拷贝一份state数据
+    //   const newState7= JSON.parse(JSON.stringify(state))
+    //   newState7.houseList = action.payload
+    //   return newState7
 
     default:
       return state

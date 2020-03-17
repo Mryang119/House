@@ -3,6 +3,7 @@ import {
   SET_SELECT_TITLE_VALUE,
   SET_FILTER_DATA,
   SET_VALUE,
+  SET_HOUSE_LIST
 } from '../actionTypes/filterActionType'
 import { axios } from '../../utils/axios'
 import { getCurrencity } from '../../utils/city'
@@ -17,10 +18,11 @@ export const setOpenType = data => {
     payload: data
   }
 }
-export const setValue = data => {
+export const setValue = (data,openType) => {
   return {
     type: SET_VALUE,
-    payload: data
+    payload: data,
+    open:openType
   }
 }
 export const setSelectTitleValue = data => {
@@ -63,3 +65,25 @@ export const asyncSetFilterData = () => {
     diaptch(setFilterData(result.data.body))
   }
 }
+// // 异步action
+// export const asyncSetHoseList = () => {
+//   return async diaptch => {
+//     // 拿到定位城市的id
+//     const { value } = await getCurrencity()
+
+//     const result = await axios.get('/houses', {
+//       params: {
+//         cityId: value
+//       }
+//     })
+//     // 异步action一定要触发同步的action才能把数据保存到仓库中
+//     diaptch(setHouseData(result.data.body))
+//   }
+// }
+// // 配合异步的同步action
+// export const setHouseData = data => {
+//   return {
+//     type: SET_HOUSE_LIST,
+//     payload: data
+//   }
+// }

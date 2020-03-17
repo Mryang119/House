@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './index.module.scss'
 import { BASE_URL } from '../../utils/url'
-
-function HouseItem({houseImg,title,tags,price,desc,houseCode}){
-    return <div key={houseCode} className={styles.house}>
+import {withRouter} from 'react-router-dom'
+function HouseItem({houseImg,title,tags,price,desc,houseCode,style,history}){
+    return <div key={houseCode} className={styles.house} style={style} onClick={()=>history.push(`/detail/${houseCode}`)}>
         <div className={styles.imgWrap}>
             {/* 图片 */}
             <img className={styles.img} src={`${BASE_URL}${houseImg}`} alt=""/>
@@ -28,4 +28,4 @@ function HouseItem({houseImg,title,tags,price,desc,houseCode}){
     </div>
 }
 
-export default HouseItem
+export default withRouter(HouseItem)

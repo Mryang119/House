@@ -32,12 +32,13 @@ class FilterPickr extends Component {
       })
   }
   render () {
+    let data = this.props[this.props.openType]
     
     return (
       <div>
         <PickerView
           onChange={this.changeValue}
-          data={this.props[this.props.openType]}
+          data={data}
           value={this.state.data}
           cols={(this.props.openType=='area')? 3:1}
         />
@@ -46,8 +47,8 @@ class FilterPickr extends Component {
             
           }}
           okClick={() => {
-            this.props.setValue(this.state.data) 
             this.props.setOpenType('')
+            this.props.setValue(this.state.data,this.props.openType) 
           }}
         />
       </div>
@@ -59,7 +60,8 @@ const mapStateToprops = ({
     filterData: {
       area: { children: area },
       rentType: mode,
-      price
+      price,
+      subway:{children:subway}
     },
     openType,
     selectValue
@@ -70,7 +72,8 @@ const mapStateToprops = ({
     area,
     mode,
     price,
-    selectValue
+    selectValue,
+    subway
   }
 }
 const mapDispathToprops = dispatch => {
