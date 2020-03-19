@@ -71,7 +71,7 @@ class Detail extends Component {
     let result = await this.axios.get(
       `/houses/${this.props.match.params.houseCode}`
     )
-    if (result.data.status == 200) {
+    if (result.data.status === 200) {
       this.setState({
         detail: result.data.body
       },
@@ -322,13 +322,18 @@ class Detail extends Component {
   }
 
   render () {
-    const {
+    
+    let {
       detail: { supporting, community, houseImg }
     } = this.state
+    if(community==null) {
+      community = '详情'
+    }
     return (
       <div className={styles.root}>
         {/* NavBar */}
-        {community && (
+        {
+          community && (
           <MyNavBar
             className={styles.detailHeader}
             title={community}

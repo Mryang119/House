@@ -40,7 +40,7 @@ class FilterPickr extends Component {
           onChange={this.changeValue}
           data={data}
           value={this.state.data}
-          cols={(this.props.openType=='area')? 3:1}
+          cols={(this.props.openType==='area')? 3:1}
         />
         <FilterFooter
           cancelClick={() => {

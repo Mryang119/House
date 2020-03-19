@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styles from './index.module.scss'
 import MynavBar from '../../components/navBar'
-import { getCurrencity } from '../../utils/city'
 import { Toast } from 'antd-mobile'
 import HouseItem from '../../components/houseLitst'
 const BMap = window.BMap

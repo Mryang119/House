@@ -2,8 +2,7 @@ import {
   SET_OPEN_TYPE,
   SET_SELECT_TITLE_VALUE,
   SET_FILTER_DATA,
-  SET_VALUE,
-  SET_HOUSE_LIST
+  SET_VALUE
 } from '../actionTypes/filterActionType'
 import { axios } from '../../utils/axios'
 import { getCurrencity } from '../../utils/city'
@@ -44,6 +43,7 @@ export const toggleSelect = data => {
     payload: data
   }
 }
+
 
 /**
  * 异步的action

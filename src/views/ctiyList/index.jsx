@@ -3,8 +3,6 @@ import MyNavBar from '../../components/navBar/index'
 import styles from './index.module.scss'
 import { getCurrencity } from '../../utils/city'
 import { AutoSizer, List } from 'react-virtualized'
-import { log } from 'util'
-
 // 标题的高度
 const TITLEHEIGHT = 36
 // 每一行的高度

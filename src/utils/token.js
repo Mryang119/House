@@ -14,7 +14,7 @@ const getToken = () => {
 // 删除token
 
 const removeToken = ()=>{
-    return localStorage.removeItem('HKZF_TOKEN')
+    return localStorage.removeItem(HKZF_TOKEN)
 }
 
 
