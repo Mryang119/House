@@ -10,6 +10,15 @@ const getToken = () => {
     return localStorage.getItem(HKZF_TOKEN)
 }
 
+
+// 删除token
+
+const removeToken = ()=>{
+    return localStorage.removeItem('HKZF_TOKEN')
+}
+
+
+
 // 判断是否登录了
 const isLogin = () => {
     const token = getToken()
@@ -21,4 +30,4 @@ const isLogin = () => {
     }
 }
 
-export {setToken,getToken,isLogin}
+export {setToken,getToken,isLogin,removeToken}

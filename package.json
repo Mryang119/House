@@ -11,6 +11,7 @@
     "babel-plugin-import": "^1.13.0",
     "classnames": "^2.2.6",
     "customize-cra": "^0.9.1",
+    "formik": "^2.1.4",
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
@@ -24,7 +25,8 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "sass-loader": "^8.0.2",
-    "taco": "^1.6.0"
+    "taco": "^1.6.0",
+    "yup": "^0.28.3"
   },
   "scripts": {
     "start": "react-app-rewired start",
