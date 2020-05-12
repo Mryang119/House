@@ -71,6 +71,7 @@ class Detail extends Component {
     let result = await this.axios.get(
       `/houses/${this.props.match.params.houseCode}`
     )
+    
     if (result.data.status === 200) {
       this.setState({
         detail: result.data.body
@@ -89,7 +90,6 @@ class Detail extends Component {
     const {
       detail: { supporting }
     } = this.state;
-
     return (
       <div className={styles.about}>
         <div className={styles.houseTitle}>房屋配套</div>
@@ -101,7 +101,7 @@ class Detail extends Component {
       </div>
     );
   };
-   /** 渲染房屋配套 */
+   /** 渲染房屋亮点 */
    renderDescription() {
     return (
       <div className={styles.set}>
@@ -109,7 +109,7 @@ class Detail extends Component {
         <div>
           <div className={styles.contact}>
             <div className={styles.user}>
-              <img src="http://huangjiangjun.top:8088/img/avatar.png" />
+              <img src="http://huangjiangjun.top:8088/img/avatar.png" alt='随便打点字'/>
               <div className={styles.useInfo}>
                 <div>王女士</div>
                 <div className={styles.userAuth}>
@@ -149,6 +149,8 @@ class Detail extends Component {
               style={{ width: '100%', height: '100%', verticalAlign: 'top' }}
               onLoad={() => {
                 // fire window resize event to change height
+                console.log('1');
+                
                 window.dispatchEvent(new Event('resize'))
                 this.setState({ imgHeight: 'auto' })
               }}
@@ -315,7 +317,7 @@ class Detail extends Component {
             this.props.history.push('/login')
         },
       ])
-
+      console.log('11')
       return
     }
     // 如果登录，继续往下执行
@@ -348,6 +350,8 @@ class Detail extends Component {
         {this.renderMap()}
         {/* 房屋配套 */}
         {supporting&&this.renderSupporting()}
+        {/* 渲染房屋亮点 */}
+        {this.renderDescription()}
         {/* 渲染猜你喜欢 */}
         {this.renderRecommendHouses()}
         {/* 渲染底部 */}

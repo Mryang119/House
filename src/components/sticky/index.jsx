@@ -30,8 +30,10 @@ class Sticky extends Component {
       <div>
         {/* 占位的div */}
         <div ref={this.placeholderRef}></div>
-        {/* 要吸顶的子组件 */}
-        <div ref={this.contentRef}>{this.props.children}</div>
+        <div ref={this.contentRef}>
+          {/* 要吸顶的子组件 */}
+          {this.props.children}
+        </div>
       </div>
     )
   }

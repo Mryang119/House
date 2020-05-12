@@ -90,7 +90,7 @@ class Map extends Component {
     // 拿到数据先生成一级覆盖物
     const { type, nextZoom } = this.getTypeAndNextZoom()
     result.data.body.forEach(item => {
-      if (type == 'cricle') {
+      if (type === 'cricle') {
         this.renderCircle(item, nextZoom)
       } else {
         this.renderRect(item)
@@ -191,7 +191,6 @@ class Map extends Component {
   render () {
     return (
       <div>
-        <div style={{ height: 45 }}></div>
         <MynavBar title='地图找房' />
         <div id='container' style={{ height: this.calcHeight() - 45 }}></div>
         {this.renderHouseList()}

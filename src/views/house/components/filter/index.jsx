@@ -8,9 +8,6 @@ import FilterPicker from '../filterPicker'
 import FiterMore from '../filterMore'
 import { Spring } from 'react-spring/renderprops'
 class Filter extends Component {
-  constructor () {
-    super()
-  }
 
   renderMask = () => {
     const openType = this.props.filters.openType
@@ -43,12 +40,12 @@ class Filter extends Component {
       <div className={styles.styles}>
         <div className={styles.content}>
           <FilterTitle />
-          {(openType == 'area' ||
-            openType == 'mode' ||
-            openType == 'price') && <FilterPicker></FilterPicker>}
-          {openType == 'more' && <FiterMore />}
+          {(openType === 'area' ||
+            openType === 'mode' ||
+            openType === 'price') && <FilterPicker></FilterPicker>}
+          {openType === 'more' && <FiterMore />}
         </div>
-        {this.props.filters.openType != 'more' && this.renderMask()}
+        {this.props.filters.openType !== 'more' && this.renderMask()}
       </div>
     )
   }

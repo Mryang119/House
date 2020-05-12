@@ -24,8 +24,6 @@ class FilterPickr extends Component {
       return state
     }
   }
-  componentDidMount () {
-  }
   changeValue = data=> {
       this.setState({
         data:data

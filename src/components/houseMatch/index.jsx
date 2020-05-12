@@ -66,29 +66,63 @@ export default class HouseMatch extends Component {
     if (props.data) {
       // 父组件，传递了要展示的数据
       supporting = HOUSE_PACKAGE.filter(item => props.data.includes(item.name))
+    } else {
+      supporting = HOUSE_PACKAGE
     }
 
     this.state = {
-      supporting:HOUSE_PACKAGE
+      supporting,
+      selectValues: []
     }
   }
+  changeSupporting = e => {
+    if (!this.props.changeSupporting) return
+    
+    let oldSelectValues = this.state.selectValues
 
+    if (oldSelectValues.includes(e.name)) {
+      oldSelectValues = oldSelectValues.filter(item => item !== e.name)
+    } else {
+      oldSelectValues.push(e.name)
+    }
+    this.setState((state)=>{
+      return {
+        selectValues:oldSelectValues
+      }
+    })
+    // 给父组件传值
+    setTimeout(()=>{
+      this.props.selcet(this.state.selectValues)
+    },0)
+  }
   render () {
     return (
       <ul className={styles.root}>
-        {this.state.supporting.map(item => {
-          return (
-            <li key={item.id} className={styles.item}>
-              <p>
-                <i
-                  className={classNames(`iconfont ${item.icon}`, styles.icon)}
-                ></i>
-              </p>
-              {item.name}
-            </li>
-          )
-        })}
+        {this.state.supporting &&
+          this.state.supporting.map(item => {
+            return (
+              <li
+                key={item.id}
+                className={classNames(styles.item, {
+                  [styles.active]: this.state.selectValues.includes(item.name)
+                })}
+                onClick={() => {
+                  this.changeSupporting(item)
+                }}
+              >
+                <p>
+                  <i
+                    className={classNames(`iconfont ${item.icon}`, styles.icon)}
+                  ></i>
+                </p>
+                {item.name}
+              </li>
+            )
+          })}
       </ul>
     )
   }
+}
+HouseMatch.defaultProps = {
+  changeSupporting: false
 }

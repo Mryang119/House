@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { SearchBar } from 'antd-mobile'
 import { getCurrencity } from '../../../utils/city'
 import { List } from 'antd-mobile'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import * as searchActionCreator from '../../../store/actionCreators/searchActionCreator.js'
 const Item = List.Item
 class Search extends Component {
   state = {
     searchList: [],
-    time: null
+    time: true
   }
   id = ''
   async componentDidMount () {
@@ -25,24 +25,27 @@ class Search extends Component {
           name: value
         }
       })
-      console.log(res);
-      
+      console.log(res)
+
       if (res.data.status === 200) {
         this.setState({
-          searchList : res.data.body
+          searchList: res.data.body
         })
       }
     }, 1000)
   }
   // 封装一个防抖函数
   antiShake = (cb, times) => {
-    clearTimeout(this.state.time)
-    this.state.time = setTimeout(() => {
-      cb()
-    }, times)
+    let time = null
+    return (function () {
+      clearTimeout(time)
+      time = setTimeout(() => {
+        cb()
+      }, times)
+    })()
   }
-  // 把小区传递给仓库 
-  toRent = (communityName) => {
+  // 把小区传递给仓库
+  toRent = communityName => {
     this.props.history.goBack()
     this.props.SetCommuniyName(communityName)
   }
@@ -57,25 +60,23 @@ class Search extends Component {
         />
         {/* 展示搜索列表 */}
         <List>
-          {
-            searchList.length > 0 &&
+          {searchList.length > 0 &&
             searchList.map(item => {
               return (
                 <Item key={item.communityName}>
-                    <div onClick={()=>this.toRent(item.communityName)}>
+                  <div onClick={() => this.toRent(item)}>
                     {item.communityName}
-                    </div>
+                  </div>
                 </Item>
               )
-            })
-          }
+            })}
         </List>
       </div>
     )
   }
 }
 
-const mapDispatchToprops =(dispatch)=>{
-  return bindActionCreators(searchActionCreator,dispatch)
+const mapDispatchToprops = dispatch => {
+  return bindActionCreators(searchActionCreator, dispatch)
 }
-export default connect(null,mapDispatchToprops)(Search)
+export default connect(null, mapDispatchToprops)(Search)

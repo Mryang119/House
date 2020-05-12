@@ -10,7 +10,7 @@ import image3 from '../../static/images/nav-3.png'
 import image4 from '../../static/images/nav-4.png'
 // 导入搜索子组件
 import Search from '../../components/search/index'
-import {getCurrencity} from '../../utils/city'
+import { getCurrencity } from '../../utils/city'
 class Home extends Component {
   constructor () {
     super()
@@ -19,7 +19,7 @@ class Home extends Component {
       swipers: null, // 轮播图
       groups: null, // 租房小组
       news: null, // 最新资讯
-      cityName:'深圳'
+      cityName: '深圳'
     }
   }
   // 定义的实例属性
@@ -37,22 +37,22 @@ class Home extends Component {
     this.getGroupsData()
     // 获取最新资讯
     this.getNewsData()
-    
+
     this.getCityname()
   }
   // 获取定位城市信息
-   getCityname = async() =>{
-     let city = window.localStorage.getItem('city')
-     if(city){
-       this.setState({
-        cityName:JSON.parse(city).label
-       })
-     } else {
+  getCityname = async () => {
+    let city = window.localStorage.getItem('city')
+    if (city) {
+      this.setState({
+        cityName: JSON.parse(city).label
+      })
+    } else {
       let res = await getCurrencity()
       this.setState({
-        cityName:res.label
+        cityName: res.label
       })
-     }
+    }
   }
   // 获取租房小组数据
   getGroupsData = async () => {
@@ -153,7 +153,7 @@ class Home extends Component {
                 <p>{item.desc}</p>
               </div>
               <div className={styles.right}>
-                <img src={`${BASE_URL}${item.imgSrc}`} />
+                <img src={`${BASE_URL}${item.imgSrc}`} alt='随便打点字' />
               </div>
               <div></div>
             </div>
@@ -197,7 +197,7 @@ class Home extends Component {
     )
   }
   render () {
-    const { swipers,news,groups,cityName } = this.state
+    const { swipers, news, groups, cityName } = this.state
     return (
       <div className={styles.root}>
         {/* 搜索子组件 */}
