@@ -78,7 +78,7 @@ class House extends Component {
     if (!item) {
       return (
         <div key={key} style={style}>
-          <p className={styles.loading}></p>
+          <p className={styles.loading}>...加载中</p>
         </div>
       )
     }
@@ -92,6 +92,7 @@ class House extends Component {
   isRowLoaded = ({ index }) => {
     return !!this.state.list[index]
   }
+
   loadMoreRows = ({ startIndex, stopIndex }) => {
     console.log(startIndex, stopIndex)
 
